@@ -1,0 +1,1 @@
+kops create cluster --name=venkeyk8s.ml --state=s3://new-venkeyk8s.ml --zones=us-east-2a,us-east-2b,us-east-2c --node-count=3 --node-size=t3.medium --master-size=t3.medium --master-volume-size 20 --node-volume-size 20 --dns-zone=venkeyk8s.ml --yes
