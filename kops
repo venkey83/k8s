@@ -1,2 +1,4 @@
 kops create cluster --name=venkeyk8s.ml --state=s3://new-venkeyk8s.ml --zones=us-east-2a,us-east-2b,us-east-2c --node-count=3 --node-size=t3.medium --master-size=t3.medium --master-volume-size 20 --node-volume-size 20 --dns-zone=venkeyk8s.ml --yes
 kops validate cluster --wait 10m
+kubectl create deployment testdeploy --image=sreeharshav/rollingupdate:v5 --replicas 3 --dry-run -o yaml
+kubectl expose deployment testdeploy --name test-lb --port=80 --target-port=80 --type=LoadBalancer -o yaml --dry-run
