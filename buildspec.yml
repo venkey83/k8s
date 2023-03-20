@@ -1,0 +1,13 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      # Authenticate with ECR
+      $(aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 078337401640.dkr.ecr.ap-northeast-1.amazonaws.com)
+      # Build the Docker image
+      docker build -t vk-test .
+      # Tag the Docker image with ECR repository URI
+      docker tag vk-test:latest 078337401640.dkr.ecr.ap-northeast-1.amazonaws.com/vk-test:latest
+      # Push the Docker image to ECR
+      docker push 078337401640.dkr.ecr.ap-northeast-1.amazonaws.com/vk-test:latest
